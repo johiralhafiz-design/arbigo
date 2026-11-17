@@ -1,23 +1,1211 @@
-<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#58cc02"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Arbi Go — আরবি শিখুন</title><style>
-:root{--green:#58cc02;--deep:#3da600;--ink:#263238;--sub:#718078;--line:#e5eae3;--bg:#fbfcf8;--mint:#effbe8;--blue:#1cb0f6;--gold:#ffc800;--red:#ff4b4b}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,"Noto Sans Bengali","Noto Sans Arabic",sans-serif;color:var(--ink)}button{font:inherit;cursor:pointer}.app{max-width:1120px;margin:auto;min-height:100vh;padding:0 24px 70px}.top{height:76px;border-bottom:2px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:3}.brand{font-size:22px;font-weight:950;color:var(--green);letter-spacing:-.5px;display:flex;gap:8px;align-items:center}.brandmark{background:var(--green);color:white;border-radius:11px;padding:3px 7px;font-size:17px}.stats{display:flex;gap:14px}.pill{border:1px solid var(--line);background:white;border-radius:13px;padding:8px 12px;font-weight:850;display:flex;gap:7px;align-items:center}.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:24px;padding-top:22px}.page{display:none}.page.active{display:block}.hero{border:2px solid #d9efc9;background:linear-gradient(120deg,#edffdf,#f8fff2);border-radius:20px;padding:23px 25px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.hero small{font-weight:850;color:#4b9d12}.hero h1{font-size:26px;margin:5px 0}.hero p{color:#66746c;margin:0}.mascot{font-size:48px;background:white;border:2px solid #d9efc9;border-radius:22px;width:78px;height:78px;display:grid;place-items:center;box-shadow:0 4px #d9efc9}.unit{background:#58cc02;color:white;border-radius:17px 17px 0 0;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 5px #43aa00}.unit h2{font-size:17px;margin:0}.unit p{font-size:13px;margin:3px 0 0;opacity:.92}.unitcount{font-weight:800;text-align:right;font-size:12px}.bar{width:100px;height:8px;background:#ffffff55;border-radius:8px;margin-top:6px}.bar i{display:block;height:100%;width:0;background:white;border-radius:8px;transition:.3s}.path{background:#f0f9e9;border:2px solid #d9ebce;border-top:0;border-radius:0 0 17px 17px;padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;justify-items:center}.lesson{width:70px;height:70px;border:0;border-radius:50%;background:var(--green);color:white;font-size:26px;font-weight:900;box-shadow:0 6px #43aa00;position:relative}.lesson:nth-child(3n+2){transform:translateY(13px)}.lesson:nth-child(3n){transform:translateY(2px)}.lesson.locked{background:#dbe2d8;box-shadow:0 5px #c2cbbf;color:white}.lesson.done{background:var(--gold);box-shadow:0 5px #d9a900}.lesson small{position:absolute;top:-7px;left:50%;transform:translateX(-50%);background:white;border:1px solid var(--line);color:#627166;border-radius:12px;font-size:10px;padding:2px 7px;white-space:nowrap}.side{position:sticky;top:96px;align-self:start}.card{background:white;border:2px solid var(--line);border-radius:17px;padding:17px;margin-bottom:14px}.card h3{margin:0 0 12px;font-size:16px}.daily{display:flex;align-items:center;gap:12px}.dailyicon{font-size:25px}.daily p{margin:0;color:var(--sub);font-size:13px}.daily b{font-size:14px}.goalbar{height:9px;background:#edf1eb;border-radius:8px;margin-top:13px}.goalbar i{display:block;height:100%;width:25%;border-radius:8px;background:var(--blue)}.streakline{display:flex;justify-content:space-between;color:var(--sub);font-size:12px}.week{display:flex;justify-content:space-between;margin-top:13px}.day{width:28px;text-align:center;color:#88928b;font-size:11px}.day b{display:grid;place-items:center;height:28px;border-radius:50%;background:#f1f4ef;margin-bottom:5px;color:#536158}.day.on b{background:#ffedd0;color:#e89b00}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,1120px);background:white;border-top:2px solid var(--line);display:flex;justify-content:center;gap:40px;padding:9px 10px;z-index:4}.nav button{background:none;border:0;color:#829087;font-weight:800;font-size:12px;display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:12px}.nav button strong{font-size:19px}.nav button.active{color:#45a800;background:#f1faea}.simple{background:white;border:2px solid var(--line);border-radius:18px;padding:21px}.simple h2{margin:0 0 6px}.simple .desc{color:var(--sub);margin:0 0 16px}.toolbar{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}.search{flex:1;min-width:170px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit}.filter{border:2px solid var(--line);background:white;border-radius:12px;padding:9px 12px;font-weight:750;color:#56635a}.filter.active{border-color:var(--green);color:var(--deep);background:#f3fce9}.wordlist{display:grid;grid-template-columns:1fr 1fr;gap:10px}.word{border:1.5px solid var(--line);border-radius:14px;padding:13px;display:flex;justify-content:space-between;align-items:center;gap:8px}.word b[lang=ar]{font-size:23px;direction:rtl;color:#293c30}.word span{font-size:13px;color:#55635b}.word button{border:0;background:#f1f6ee;border-radius:10px;padding:7px}.primary{background:var(--green);border:0;color:white;border-radius:13px;padding:13px 17px;font-weight:900;box-shadow:0 4px var(--deep)}.profilegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.statbox{background:#f5f8f2;border-radius:13px;padding:15px;text-align:center}.statbox b{display:block;font-size:22px}.modal{display:none;position:fixed;inset:0;background:#17241d99;z-index:6;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.sheet{background:white;width:min(100%,500px);border-radius:23px;padding:22px;box-shadow:0 12px 40px #0002}.sheethead{display:flex;justify-content:space-between;align-items:center}.sheet h2{margin:4px 0;font-size:20px}.close{border:0;background:#f1f4ef;width:36px;height:36px;border-radius:50%;font-size:20px}.qbar{height:9px;border-radius:8px;background:#eef2ec;margin:15px 0}.qbar i{height:100%;display:block;background:var(--green);border-radius:8px;transition:.25s}.prompt{color:var(--sub);margin:15px 0}.arabic{direction:rtl;text-align:center;font-size:43px;font-weight:750;margin:22px 0;color:#243b2b}.answers{display:grid;gap:9px}.answer{border:2px solid var(--line);background:white;border-radius:13px;padding:12px;text-align:left;font-weight:750;color:var(--ink)}.answer:hover{border-color:#a7db7c}.answer.correct{border-color:var(--green);background:#f2ffe9}.answer.wrong{border-color:#ff7373;background:#fff1f1}.feedback{min-height:23px;font-weight:800;margin-top:9px}.check{width:100%;margin-top:10px;border:0;border-radius:13px;background:#e2e7df;color:#829080;padding:14px;font-weight:900}.check.ready{background:var(--green);color:white;box-shadow:0 4px var(--deep)}.toast{position:fixed;top:84px;left:50%;transform:translateX(-50%);background:#293830;color:white;border-radius:12px;padding:11px 16px;z-index:8;display:none}.toast.show{display:block}@media(max-width:760px){.app{padding:0 14px 70px}.layout{grid-template-columns:1fr}.side{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{margin:0}.mascot{width:60px;height:60px;font-size:35px}.hero{padding:18px}.hero h1{font-size:22px}.nav{gap:3px;justify-content:space-around}.nav button{padding:7px 8px}.nav button span{display:none}}@media(max-width:450px){.wordlist{grid-template-columns:1fr}.pill{padding:7px 9px;font-size:13px}.hero p{max-width:230px}.path{gap:10px;padding:15px 8px}.lesson{width:62px;height:62px}}
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="ARBI GO - বাংলা ভাষীদের জন্য আরবি শেখার প্র্যাকটিস অ্যাপ">
+  <title>ARBI GO</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #f4f7ff;
+      --bg-strong: #edf1ff;
+      --panel: rgba(255,255,255,0.76);
+      --panel-strong: #ffffff;
+      --text: #1d2333;
+      --muted: #64708a;
+      --line: rgba(78, 100, 156, 0.14);
+      --primary: #4f46e5;
+      --primary-2: #7c3aed;
+      --green: #16a34a;
+      --green-soft: #e9fdf1;
+      --amber: #f59e0b;
+      --amber-soft: #fff5db;
+      --red: #ef4444;
+      --red-soft: #ffe8ea;
+      --cyan: #22c1ea;
+      --shadow: 0 20px 45px rgba(79, 70, 229, 0.14);
+      --radius: 24px;
+    }
 
-/* Simplified home screen polish */
-.layout{display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:22px}.layout>div{width:100%;max-width:760px}.side{position:static;width:100%;max-width:760px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.side .card{margin:0;border:1px solid #e7eee3;box-shadow:0 5px 18px #243b2b08}.hero{position:relative;overflow:hidden;min-height:178px;padding:26px 30px;border:0;border-radius:23px;background:linear-gradient(120deg,#4cba08,#7bd42c);color:white;box-shadow:0 7px 0 #399b00}.hero:after{content:"مَرْحَبًا";position:absolute;right:118px;bottom:-10px;font-size:54px;font-weight:800;color:#ffffff20;direction:rtl}.hero small,.hero p{color:#f1ffe8}.hero h1{font-size:28px;letter-spacing:-.3px}.mascot{position:relative;z-index:1;background:#ffffff25;border:1px solid #ffffff50;box-shadow:none;color:white;width:76px;height:76px}.unit{border-radius:18px;box-shadow:0 5px #43aa00;padding:17px 20px}.unit h2{font-size:18px}.path{margin-top:9px;border:1px solid #e3ebdf;border-radius:18px;background:white;box-shadow:0 5px 18px #243b2b08;padding:24px 20px 22px;grid-template-columns:repeat(3,minmax(80px,1fr));gap:22px}.lesson{width:72px;height:72px}.lesson:hover{filter:brightness(1.04);transform:translateY(-2px)}.lesson:nth-child(3n+2):hover,.lesson:nth-child(3n):hover{transform:translateY(10px)}.lesson.locked:hover{filter:none}.daily{gap:14px}.dailyicon{width:42px;height:42px;border-radius:13px;background:#eaf7ff;display:grid;place-items:center}.goalbar{height:10px}.week{margin-top:15px}.day b{width:30px;height:30px}.nav{box-shadow:0 -5px 20px #202d2010;border-top:1px solid var(--line)}
-@media(max-width:760px){.layout{padding-top:14px;gap:13px}.side{grid-template-columns:1fr 1fr}.hero{min-height:152px;padding:19px;border-radius:19px}.hero h1{font-size:22px;max-width:240px}.hero p{max-width:240px}.mascot{width:58px;height:58px;font-size:33px}.hero:after{right:75px;font-size:36px}.path{padding:20px 12px;gap:12px}.lesson{width:62px;height:62px}.unit{padding:14px}.side .card{padding:13px}.week{gap:2px}.day{font-size:9px;width:25px}.day b{height:26px;width:26px}}
-/* Units, quiz types and sound */
-.unitblock{margin-bottom:22px}.unit.u1{background:#1cb0f6;box-shadow:0 5px #1592cc}.unit.u2{background:#ce82ff;box-shadow:0 5px #a95fd8}.unit.u3{background:#ff9600;box-shadow:0 5px #d97f00}.unit.u4{background:#ff4b4b;box-shadow:0 5px #d63c3c}.unit.u5{background:#2bb3a0;box-shadow:0 5px #1f8f80}
-.soundbtn{cursor:pointer;user-select:none}
-.arabic{display:flex;align-items:center;justify-content:center;gap:12px;min-height:70px}.arabic .say{border:0;background:#e8f6ff;color:#1592cc;border-radius:14px;width:48px;height:48px;font-size:22px;box-shadow:0 3px #c6e6f8;flex:none}.arabic.bn{direction:ltr;font-size:30px}.arabic .bigsay{width:96px;height:96px;font-size:44px;border-radius:24px}
-.answer.ar{direction:rtl;text-align:right;font-size:24px;font-family:"Noto Sans Arabic",system-ui,sans-serif}.answer.sel{border-color:var(--blue);background:#eaf7ff}.answer.reveal{border-color:var(--green);background:#f2ffe9}
-.result{text-align:center;padding:10px 0}.result .big{font-size:58px}.result h2{margin:8px 0}.result p{color:var(--sub)}.result .primary{width:100%;margin-top:12px}
-.word .wbtn{cursor:pointer}
-</style></head><body><main class="app"><header class="top"><div class="brand"><span class="brandmark">ع</span> ARBI GO</div><div class="stats"><div class="pill soundbtn" id="soundToggle" role="button" aria-label="শব্দ চালু/বন্ধ">🔊</div><div class="pill">🔥 <b id="streak">1</b></div><div class="pill">💎 <b id="xp">0</b> XP</div></div></header><div class="layout"><div>
-<section class="page active" id="page-lesson"><div class="hero"><div><small>বাংলা → আরবি · শুরুর স্তর</small><h1>চলুন, আজ আরবি শিখি!</h1><p>প্রতিদিন ৫ মিনিট—ছোট পাঠে বড় অগ্রগতি।</p></div><div class="mascot">🦉</div></div><div id="units"></div></section>
-<section class="page" id="page-practice"><div class="simple"><h2>📖 শব্দভান্ডার</h2><p class="desc">নতুন শব্দ শিখুন, সার্চ করুন এবং আরবি উচ্চারণ শুনুন।</p><div class="toolbar" id="filters"><input class="search" id="search" placeholder="শব্দ খুঁজুন…"></div><div class="wordlist" id="wordlist"></div><button class="primary" style="margin-top:18px" id="review">শব্দ কুইজ শুরু করুন →</button></div></section>
-<section class="page" id="page-rank"><div class="simple"><h2>🏆 আপনার অগ্রগতি</h2><p class="desc">প্রতিদিন অনুশীলন করে নিজের সেরা রেকর্ড গড়ুন।</p><div class="profilegrid"><div class="statbox">⚡<b id="rankxp">0</b>মোট XP</div><div class="statbox">🔥<b id="rankstreak">1</b>দিনের স্ট্রিক</div><div class="statbox">✅<b id="ranklessons">0</b>পাঠ শেষ</div></div><h3 style="margin:23px 0 8px">এই সপ্তাহে</h3><p class="desc">লিডারবোর্ড শিগগিরই আসছে। আপাতত নিজের ধারাবাহিকতা ধরে রাখুন!</p></div></section>
-<section class="page" id="page-profile"><div class="simple"><h2>👤 আমার প্রোফাইল</h2><p class="desc">বাংলাভাষীদের জন্য আরবি শেখার যাত্রা।</p><div class="wordlist"><div class="word"><span>শেখার ভাষা</span><b>বাংলা → আরবি</b></div><div class="word"><span>অগ্রগতি</span><b id="profilelessons">0</b></div><div class="word"><span>মোট XP</span><b id="profilexp">0</b></div><div class="word"><span>সাউন্ড ইফেক্ট</span><button class="filter" id="soundToggle2">চালু</button></div></div><button class="filter" id="reset" style="margin-top:18px;color:#d45555">অগ্রগতি রিসেট</button></div></section>
-</div><aside class="side"><div class="card"><h3>🎯 দৈনিক লক্ষ্য</h3><div class="daily"><div class="dailyicon">⚡</div><div><b>২০ XP অর্জন করুন</b><p>প্রতিদিন অল্প অনুশীলন</p></div></div><div class="goalbar"><i id="goal"></i></div><p class="streakline"><span>আজকের অগ্রগতি</span><b id="goalLabel">0 / 20 XP</b></p></div><div class="card"><h3>🔥 শেখার ধারাবাহিকতা</h3><div class="week" id="week"></div></div></aside></div></main><nav class="nav"><button class="active" data-page="lesson"><strong>🗺️</strong><span>শেখা</span></button><button data-page="practice"><strong>📚</strong><span>শব্দ</span></button><button data-page="rank"><strong>🏆</strong><span>অগ্রগতি</span></button><button data-page="profile"><strong>👤</strong><span>প্রোফাইল</span></button></nav>
-<div class="modal" id="modal"><section class="sheet"><div class="sheethead"><div><small style="color:#49a40a;font-weight:850" id="lessonName">পাঠ</small><h2 id="qtitle">সঠিক উত্তরটি বেছে নিন</h2></div><button class="close" id="close" aria-label="বন্ধ করুন">×</button></div><div class="qbar"><i id="qbar"></i></div><div id="quizbody"><p class="prompt" id="prompt"></p><div class="arabic" id="arabic"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><button class="check" id="check">উত্তর যাচাই</button></div><div class="result" id="result" hidden></div></section></div><div class="toast" id="toast"></div>
-<script src="/app.js"></script>
-<script>if('serviceWorker'in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}))}</script>
-</body></html>
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans Bengali", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(34,193,234,0.18), transparent 22%),
+        linear-gradient(180deg, #eef4ff 0%, #f8f9ff 40%, #f3f6ff 100%);
+      color: var(--text);
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    .app-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(111,130,199,0.12);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+      position: sticky;
+      top: 12px;
+      z-index: 15;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brandmark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+      box-shadow: 0 15px 25px rgba(79,70,229,0.28);
+    }
+
+    .brand small {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: clamp(1.1rem, 1.9vw, 1.7rem);
+      letter-spacing: 0.03em;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .sound-btn, .chip, .nav button, .ghost-btn, .primary, .secondary, .answer, .lesson, .filter, .wbtn, .close-btn {
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+
+    .chip, .sound-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(79,70,229,0.09);
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    .nav {
+      display: inline-flex;
+      gap: 6px;
+      background: rgba(79,70,229,0.06);
+      border-radius: 14px;
+      padding: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav button {
+      background: transparent;
+      border-radius: 12px;
+      padding: 9px 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .nav button.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 12px 18px rgba(79,70,229,0.24);
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(260px, 0.7fr);
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .page {
+      display: none;
+      min-width: 0;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(79,70,229,0.98), rgba(124,58,237,0.88));
+      color: white;
+      border-radius: 28px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 28px 40px rgba(79,70,229,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -32px -54px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.9);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .hero h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      max-width: 620px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 580px;
+      color: rgba(255,255,255,0.82);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .primary, .secondary, .ghost-btn {
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #facc15, #fbbf24);
+      color: #281b00;
+      box-shadow: 0 18px 26px rgba(251,191,36,0.22);
+    }
+
+    .secondary {
+      background: rgba(255,255,255,0.14);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .mini-stat {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 22px;
+      padding: 18px 16px;
+      box-shadow: 0 12px 30px rgba(29,35,51,0.04);
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mini-stat strong {
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      line-height: 1;
+    }
+
+    .units-section {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.64);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 22px 18px 10px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 6px 16px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+    }
+
+    .section-header small {
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .units {
+      display: grid;
+      gap: 18px;
+    }
+
+    .unit-block {
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(245,247,255,0.7));
+      overflow: hidden;
+    }
+
+    .unit-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 18px 8px;
+    }
+
+    .unit-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .unit-title h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .unit-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .unit-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      background: rgba(79,70,229,0.08);
+      color: var(--primary);
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+      gap: 12px;
+      padding: 14px 18px 18px;
+    }
+
+    .lesson {
+      position: relative;
+      min-height: 92px;
+      border-radius: 18px;
+      padding: 14px 12px;
+      text-align: left;
+      font-weight: 800;
+      color: var(--text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(242,245,255,0.85) 100%);
+      border: 1px solid rgba(111,130,199,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .lesson small {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+
+    .lesson.done {
+      background: linear-gradient(135deg, rgba(22,163,74,0.12), rgba(34,193,234,0.10));
+      border-color: rgba(22,163,74,0.2);
+    }
+
+    .lesson.locked {
+      opacity: 0.62;
+      filter: grayscale(0.12);
+    }
+
+    .lesson::before {
+      content: attr(data-badge);
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.82rem;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      background: rgba(79,70,229,0.12);
+      border-radius: 50%;
+      color: var(--primary);
+    }
+
+    .lesson.done::before {
+      background: rgba(22,163,74,0.12);
+      color: var(--green);
+    }
+
+    .lesson.locked::before {
+      background: rgba(100,112,138,0.1);
+      color: var(--muted);
+    }
+
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 20px 18px;
+    }
+
+    .side-card h3 {
+      margin: 0 0 18px;
+      font-size: 1.15rem;
+    }
+
+    .daily-goal {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .goal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, rgba(250,204,21,0.15), rgba(249,115,22,0.22));
+    }
+
+    .daily-goal strong {
+      font-size: 1.05rem;
+      display: block;
+    }
+
+    .daily-goal span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: rgba(79,70,229,0.10);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--cyan));
+      transition: width 0.25s ease;
+    }
+
+    .goal-label {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .week-strip {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .day-pill {
+      text-align: center;
+      border-radius: 14px;
+      padding: 10px 4px;
+      background: rgba(79,70,229,0.05);
+      color: var(--muted);
+      font-size: 0.82rem;
+      border: 1px solid rgba(111,130,199,0.08);
+    }
+
+    .day-pill.active {
+      background: linear-gradient(135deg, rgba(22,163,74,0.12), rgba(34,193,234,0.08));
+      border-color: rgba(22,163,74,0.2);
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .study-tips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .study-tips li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .study-tips li strong {
+      color: var(--text);
+    }
+
+    .practice-box, .rank-box, .profile-box {
+      padding: 22px 18px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .practice-box h2, .rank-box h2, .profile-box h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+    }
+
+    .desc {
+      color: var(--muted);
+      margin: 0 0 18px;
+      line-height: 1.65;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 180px;
+      border-radius: 14px;
+      border: 1px solid rgba(111,130,199,0.2);
+      background: rgba(247,249,255,0.9);
+      padding: 12px 14px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: rgba(79,70,229,0.35);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.08);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .filter {
+      background: rgba(79,70,229,0.06);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-weight: 700;
+    }
+
+    .filter.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 10px 18px rgba(79,70,229,0.16);
+    }
+
+    .wordlist {
+      display: grid;
+      gap: 12px;
+    }
+
+    .word-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(248,250,255,0.9);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 18px;
+      padding: 14px 14px 14px 18px;
+    }
+
+    .word-main {
+      min-width: 0;
+    }
+
+    .word-main b {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-family: "Noto Sans Arabic", "Segoe UI", sans-serif;
+      direction: rtl;
+      unicode-bidi: plaintext;
+    }
+
+    .word-main span {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .wbtn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(79,70,229,0.08);
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .rank-stat {
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(79,70,229,0.06), rgba(34,193,234,0.05));
+      border: 1px solid rgba(111,130,199,0.1);
+    }
+
+    .rank-stat span {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .rank-stat strong {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+    }
+
+    .profile-card {
+      margin-top: 18px;
+      background: linear-gradient(135deg, rgba(79,70,229,0.07), rgba(34,193,234,0.08));
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      font-weight: 900;
+      font-size: 1.3rem;
+    }
+
+    .profile-top h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .profile-top span {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .profile-points {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .profile-points .pill {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(111,130,199,0.1);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.52);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 30;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .sheet {
+      width: min(100%, 560px);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(111,130,199,0.12);
+      border-radius: 28px;
+      box-shadow: 0 32px 60px rgba(15, 23, 42, 0.22);
+      padding: 18px 18px 16px;
+      position: relative;
+    }
+
+    .sheet-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sheet-head small {
+      color: #1ea84a;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .sheet-head h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(148,163,184,0.12);
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .quiz-body {
+      display: grid;
+      gap: 16px;
+    }
+
+    .prompt {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .arabic {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 84px;
+      padding: 16px 12px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(79,70,229,0.06), rgba(34,193,234,0.06));
+      border: 1px solid rgba(79,70,229,0.12);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-family: "Noto Sans Arabic", "Segoe UI", sans-serif;
+      direction: rtl;
+      unicode-bidi: plaintext;
+    }
+
+    .arabic.bn {
+      font-family: "Noto Sans Bengali", "Segoe UI", sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      direction: ltr;
+      text-align: center;
+    }
+
+    .say {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 0;
+      background: rgba(79,70,229,0.08);
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .answers {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .answer {
+      width: 100%;
+      text-align: left;
+      border-radius: 16px;
+      border: 1px solid rgba(111,130,199,0.16);
+      background: rgba(248,250,255,0.9);
+      padding: 14px 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .answer.ar {
+      direction: rtl;
+      text-align: right;
+      font-family: "Noto Sans Arabic", "Segoe UI", sans-serif;
+      font-size: 1.2rem;
+      unicode-bidi: plaintext;
+    }
+
+    .answer.selected {
+      border-color: rgba(79,70,229,0.45);
+      background: rgba(79,70,229,0.08);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.04);
+    }
+
+    .answer.correct {
+      border-color: rgba(22,163,74,0.4);
+      background: rgba(22,163,74,0.1);
+      color: #0f7a3a;
+    }
+
+    .answer.wrong {
+      border-color: rgba(239,68,68,0.35);
+      background: rgba(239,68,68,0.08);
+      color: #b42020;
+    }
+
+    .answer.reveal {
+      border-color: rgba(22,163,74,0.4);
+      background: rgba(22,163,74,0.1);
+      color: #0f7a3a;
+    }
+
+    .feedback {
+      min-height: 32px;
+      margin-top: 10px;
+      font-weight: 800;
+      font-size: 0.98rem;
+    }
+
+    .progress-bar.quiz-bar {
+      margin-top: 8px;
+      height: 10px;
+      background: rgba(148,163,184,0.15);
+    }
+
+    .result {
+      display: none;
+      text-align: center;
+      padding: 10px 4px 4px;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result .big {
+      font-size: 4rem;
+      margin: 8px 0;
+    }
+
+    .result h2 {
+      margin: 5px 0 8px;
+      font-size: 2rem;
+    }
+
+    .result p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .sheet-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    #check {
+      min-width: 180px;
+    }
+
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(15,23,42,0.88);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .side-panel {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell {
+        padding: 16px 14px 28px;
+      }
+
+      .topbar {
+        padding: 12px 12px;
+        border-radius: 18px;
+      }
+
+      .brand {
+        margin-right: auto;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav button {
+        flex: 1;
+      }
+
+      .top-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+      }
+
+      .hero {
+        padding: 20px 18px 18px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .sheet {
+        padding: 16px 14px 14px;
+      }
+
+      .answer {
+        padding: 12px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brandmark">ع</span>
+        <div>
+          <small>Arabic for Bangla</small>
+          <strong>ARBI GO</strong>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="sound-btn" id="soundToggle" aria-label="সাউন্ড টগল">🔊</button>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="active" data-page="lesson">Lessons</button>
+          <button data-page="practice">Practice</button>
+          <button data-page="rank">Progress</button>
+          <button data-page="profile">Profile</button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="content">
+      <main>
+        <section class="page active" id="page-lesson">
+          <div class="hero">
+            <div class="hero-badge">বাংলা → আরবি • ৬ ইউনিট</div>
+            <h1>আজকে একটু দ্রুত আরবি শিখি</h1>
+            <p>দৈনন্দিন কথোপকথন, পরিবার, খাবার, রং আর শারীরিক শব্দ শেখার জন্য ছোট ছোট লেসন। নিয়মিত অনুশীলন করলে দ্রুত ভাষা গড়ে উঠবে।</p>
+            <div class="hero-actions">
+              <button class="primary" id="review">মিশ্র কুইজ</button>
+              <button class="secondary" id="startPath">ইউনিট শুরু</button>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="mini-stat">
+              <span>মোট XP</span>
+              <strong id="xp">0</strong>
+            </div>
+            <div class="mini-stat">
+              <span>স্ট্রিক</span>
+              <strong id="streak">0</strong>
+            </div>
+            <div class="mini-stat">
+              <span>সম্পন্ন</span>
+              <strong id="ranklessons">0</strong>
+            </div>
+            <div class="mini-stat">
+              <span>সাপ্তাহিক</span>
+              <strong id="weeklyLabel">0</strong>
+            </div>
+          </div>
+
+          <div class="units-section">
+            <div class="section-header">
+              <h2>শিখুন</h2>
+              <small>প্রগতিশীল পাঠ</small>
+            </div>
+            <div class="units" id="units"></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-practice">
+          <div class="practice-box">
+            <h2>📖 শব্দভান্ডার</h2>
+            <p class="desc">নতুন শব্দ অনুশীলন করুন, সার্চ করুন এবং সহজে উচ্চারণ শুনুন।</p>
+
+            <div class="toolbar">
+              <input class="search" id="search" type="text" placeholder="শব্দ বা বাংলা অর্থ খুঁজুন...">
+            </div>
+
+            <div class="filter-row" id="filters"></div>
+            <div class="wordlist" id="wordlist"></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-rank">
+          <div class="rank-box">
+            <h2>🏆 আপনার অগ্রগতি</h2>
+            <p class="desc">দৈনিক অনুশীলন, স্ট্রিক ও চলমান মোট অগ্রগতি দেখুন।</p>
+
+            <div class="dash-grid">
+              <div class="rank-stat">
+                <span>মোট XP</span>
+                <strong id="rankxp">0</strong>
+              </div>
+              <div class="rank-stat">
+                <span>স্ট্রিক</span>
+                <strong id="rankstreak">0</strong>
+              </div>
+              <div class="rank-stat">
+                <span>পাঠ</span>
+                <strong id="profilelessons">0</strong>
+              </div>
+              <div class="rank-stat">
+                <span>আজ</span>
+                <strong id="todayXp">0</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-profile">
+          <div class="profile-box">
+            <h2>👤 আমার প্রোফাইল</h2>
+            <p class="desc">শেখার পথে আপনার উন্নতির ধারাবাহিকতা এখন সহজে দেখা যাবে।</p>
+
+            <div class="profile-card">
+              <div class="profile-top">
+                <div class="avatar">A</div>
+                <div>
+                  <h3>ARBI GO Learner</h3>
+                  <span>বাংলা ভাষী শিক্ষার্থী</span>
+                </div>
+              </div>
+
+              <div class="profile-points">
+                <span class="pill">XP: <strong id="profilexp">0</strong></span>
+                <span class="pill">স্ট্রিক: <strong id="profilestreak">0</strong></span>
+                <span class="pill">পাঠ: <strong id="profiledone">0</strong></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="side-panel">
+        <div class="side-card">
+          <h3>🎯 দৈনিক লক্ষ্য</h3>
+          <div class="daily-goal">
+            <div class="goal-icon">⚡</div>
+            <div>
+              <strong>২০ XP অর্জন</strong>
+              <span>আজকে একটু নিয়মিত অনুশীলন করুন</span>
+            </div>
+          </div>
+
+          <div class="progress-bar"><span id="goal"></span></div>
+          <div class="goal-label" id="goalLabel">০ / ২০ XP</div>
+        </div>
+
+        <div class="side-card">
+          <h3>📅 এই সপ্তাহ</h3>
+          <div class="week-strip" id="week"></div>
+        </div>
+
+        <div class="side-card">
+          <h3>💡 স্টাডি টিপস</h3>
+          <ul class="study-tips">
+            <li><span>✅</span><div><strong>দৈনিক ১০ মিনিট</strong><br>প্রতিদিন ছোট অ্যান্টাইমেই উন্নতি হয়।</div></li>
+            <li><span>🔊</span><div><strong>উচ্চারণ শুনুন</strong><br>শব্দ মনে রাখার জন্য অডিও খুব কার্যকর।</div></li>
+            <li><span>🧠</span><div><strong>সবসময় রিভিউ</strong><br>ভুল উত্তর রিভিউ করলে নতুন শব্দ দ্রুত শিখবেন।</div></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-modal="true" role="dialog">
+    <div class="sheet">
+      <div class="sheet-head">
+        <div>
+          <small id="lessonName">পাঠ</small>
+          <h2 id="qtitle">সঠিক উত্তর বেছে নিন</h2>
+        </div>
+        <button class="close-btn" id="close" aria-label="Close">✕</button>
+      </div>
+
+      <div class="quiz-body" id="quizbody">
+        <div class="prompt" id="prompt">কী উত্তর বেছে নেবেন?</div>
+        <div class="arabic" id="arabic"></div>
+        <div class="answers" id="answers"></div>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+      <div class="progress-bar quiz-bar"><span id="qbar"></span></div>
+
+      <div class="sheet-actions">
+        <button class="primary" id="check">উত্তর যাচাই</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="big">🎉</div>
+        <h2>অসাধারণ!</h2>
+        <p id="resultText">পাঠ শেষ হয়েছে।</p>
+        <div class="result-actions">
+          <button class="primary" id="doneBtn">সম্পন্ন</button>
+          <button class="secondary" id="nextLesson">পরের পাঠ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
