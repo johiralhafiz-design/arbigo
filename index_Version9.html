@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#49b900">
+  <meta name="description" content="বাংলাভাষীদের জন্য আরবি শেখার সহজ অ্যাপ।">
+  <title>Arbi Go — আরবি শিখুন</title>
+  <style>
+    :root{
+      color-scheme:light;
+      --green:#49b900;
+      --deep:#348d00;
+      --ink:#1f2c23;
+      --sub:#68766d;
+      --line:#e4eae1;
+      --bg:#f7f9f5;
+      --mint:#eff9e9;
+      --blue:#1c9fe0;
+      --gold:#ffc800;
+      --red:#d94b4b;
+      --shadow:0 10px 28px #20351f0a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:system-ui,-apple-system,"Noto Sans Bengali","Noto Sans Arabic",sans-serif;
+      letter-spacing:-.01em;
+    }
+    button,input{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible{
+      outline:3px solid var(--blue);
+      outline-offset:3px;
+    }
+    .app{max-width:1120px;min-height:100vh;margin:auto;padding:0 24px 92px}
+    .top{
+      height:74px;
+      position:sticky;
+      top:0;
+      z-index:3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:#f7f9f5ed;
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(14px);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      color:var(--deep);
+      font-size:21px;
+      font-weight:950;
+      letter-spacing:.03em;
+    }
+    .brandmark{
+      display:grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      border-radius:11px;
+      background:var(--green);
+      color:#fff;
+      font-size:20px;
+    }
+    .stats{display:flex;gap:9px}
+    .pill{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 11px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#fff;
+      font-size:14px;
+      font-weight:850;
+      box-shadow:var(--shadow);
+    }
+    .layout{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      padding-top:22px;
+    }
+    .main-column,.side{width:100%;max-width:760px}
+    .page{display:none}
+    .page.active{display:block;animation:fade-in .2s ease-out}
+    @keyframes fade-in{
+      from{opacity:.6;transform:translateY(4px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .hero{
+      min-height:175px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      overflow:hidden;
+      margin-bottom:18px;
+      padding:25px 28px;
+      border-radius:22px;
+      background:linear-gradient(120deg,#329b00,#75d334);
+      color:#fff;
+      box-shadow:0 6px 0 #318900,0 16px 34px #378b0020;
+    }
+    .hero:after{
+      content:"مَرْحَبًا";
+      position:absolute;
+      right:112px;
+      bottom:-12px;
+      color:#ffffff20;
+      direction:rtl;
+      font-size:52px;
+      font-weight:850;
+      pointer-events:none;
+    }
+    .hero-copy{position:relative;z-index:1}
+    .hero small{color:#f1ffe8;font-weight:850}
+    .hero h1{max-width:480px;margin:6px 0;font-size:27px;line-height:1.4}
+    .hero p{margin:0;color:#f1ffe8}
+    .mascot{
+      position:relative;
+      z-index:1;
+      display:grid;
+      flex:0 0 auto;
+      place-items:center;
+      width:72px;
+      height:72px;
+      border:1px solid #ffffff55;
+      border-radius:21px;
+      background:#ffffff25;
+      font-size:38px;
+    }
+    .unit{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 19px;
+      border-radius:17px;
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 4px #399400;
+    }
+    .unit h2{margin:0;font-size:17px}
+    .unit p{margin:3px 0 0;font-size:13px;opacity:.92}
+    .unitcount{text-align:right;font-size:12px;font-weight:850;white-space:nowrap}
+    .bar{width:100px;height:8px;margin-top:6px;border-radius:8px;background:#ffffff55}
+    .bar i{display:block;width:0;height:100%;border-radius:8px;background:#fff;transition:width .25s}
+    .path{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(80px,1fr));
+      justify-items:center;
+      gap:22px;
+      margin-top:11px;
+      padding:23px 20px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .lesson{
+      position:relative;
+      width:70px;
+      height:70px;
+      border:0;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
+      font-size:24px;
+      font-weight:900;
+      box-shadow:0 5px #399400;
+      transition:transform .18s ease,filter .18s ease;
+    }
+    .lesson:hover:not(.locked){transform:translateY(-3px);filter:brightness(1.05)}
+    .lesson.done{background:var(--gold);box-shadow:0 5px #d9a900}
+    .lesson.locked{background:#dbe2d8;box-shadow:0 5px #c2cbbf;cursor:not-allowed}
+    .lesson small{
+      position:absolute;
+      top:-8px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:2px 7px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:#627166;
+      font-size:10px;
+      white-space:nowrap;
+    }
+    .side{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .card,.simple{
+      border:1px solid var(--line);
+      border-radius:17px;
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .card{padding:16px}
+    .card h3{margin:0 0 12px;font-size:15px}
+    .daily{display:flex;align-items:center;gap:12px}
+    .dailyicon{
+      display:grid;
+      flex:0 0 auto;
+      place-items:center;
+      width:40px;
+      height:40px;
+      border-radius:13px;
+      background:#eaf7ff;
+      font-size:21px;
+    }
+    .daily p{margin:2px 0 0;color:var(--sub);font-size:12px}
+    .daily b{font-size:13px}
+    .goalbar{height:9px;margin-top:13px;border-radius:8px;background:#edf1eb}
+    .goalbar i{display:block;width:0;height:100%;border-radius:8px;background:var(--blue);transition:width .25s}
+    .streakline{display:flex;justify-content:space-between;gap:8px;margin:8px 0 0;color:var(--sub);font-size:11px}
+    .week{display:flex;justify-content:space-between;gap:4px;margin-top:12px}
+    .day{width:27px;text-align:center;color:#88928b;font-size:10px}
+    .day b{
+      display:grid;
+      place-items:center;
+      width:28px;
+      height:28px;
+      margin:0 auto 4px;
+      border-radius:50%;
+      background:#f1f4ef;
+      color:#536158;
+    }
+    .day.on b{background:#ffedd0;color:#e89b00}
+    .simple{padding:21px}
+    .simple h2{margin:0 0 5px;font-size:21px}
+    .desc{margin:0 0 15px;color:var(--sub)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+    .search{
+      flex:1;
+      min-width:170px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+    }
+    .filter{
+      padding:8px 11px;
+      border:1px solid var(--line);
+      border-radius:11px;
+      background:#fff;
+      color:#56635a;
+      font-weight:750;
+    }
+    .filter.active{border-color:var(--green);background:var(--mint);color:var(--deep)}
+    .wordlist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .word{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      transition:border-color .16s,transform .16s;
+    }
+    .word:hover{transform:translateY(-1px);border-color:#b9dda3}
+    .word b[lang="ar"]{color:#293c30;font-size:21px}
+    .word span{color:#55635b;font-size:13px}
+    .word button{
+      flex:0 0 auto;
+      padding:7px;
+      border:0;
+      border-radius:9px;
+      background:#f1f6ee;
+    }
+    .primary{
+      padding:12px 16px;
+      border:0;
+      border-radius:12px;
+      background:var(--green);
+      color:#fff;
+      font-weight:900;
+      box-shadow:0 4px var(--deep);
+      transition:filter .16s,transform .16s;
+    }
+    .primary:hover{transform:translateY(-1px);filter:brightness(.96)}
+    .profilegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .statbox{
+      padding:14px 8px;
+      border-radius:13px;
+      background:#f5f8f2;
+      text-align:center;
+    }
+    .statbox b{display:block;font-size:22px}
+    .nav{
+      position:fixed;
+      z-index:4;
+      bottom:0;
+      left:50%;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      width:min(100%,1120px);
+      padding:9px 10px;
+      transform:translateX(-50%);
+      border-top:1px solid var(--line);
+      background:#ffffffed;
+      box-shadow:0 -5px 20px #202d2010;
+      backdrop-filter:blur(14px);
+    }
+    .nav button{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 12px;
+      border:0;
+      border-radius:11px;
+      background:none;
+      color:#829087;
+      font-size:12px;
+      font-weight:800;
+    }
+    .nav button strong{font-size:18px}
+    .nav button.active{background:var(--mint);color:var(--deep)}
+    .modal{
+      position:fixed;
+      z-index:6;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      background:#17241d99;
+    }
+    .modal.show{display:flex}
+    .sheet{
+      width:min(100%,500px);
+      padding:22px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 12px 40px #0002;
+    }
+    .sheethead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .sheet h2{margin:4px 0;font-size:19px}
+    .close{
+      width:36px;
+      height:36px;
+      border:0;
+      border-radius:50%;
+      background:#f1f4ef;
+      font-size:20px;
+    }
+    .qbar{height:8px;margin:15px 0;border-radius:8px;background:#eef2ec}
+    .qbar i{display:block;width:0;height:100%;border-radius:8px;background:var(--green);transition:width .25s}
+    .prompt{margin:15px 0;color:var(--sub)}
+    .arabic{
+      margin:20px 0;
+      color:#243b2b;
+      direction:rtl;
+      font-size:42px;
+      font-weight:750;
+      text-align:center;
+    }
+    .answers{display:grid;gap:9px}
+    .answer{
+      padding:12px;
+      border:2px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:750;
+      text-align:left;
+    }
+    .answer:hover{border-color:#a7db7c}
+    .answer.selected{border-color:var(--blue);background:#eff9ff}
+    .answer.correct{border-color:var(--green);background:#f2ffe9}
+    .answer.wrong{border-color:#ff7373;background:#fff1f1}
+    .feedback{min-height:24px;margin-top:9px;font-weight:800}
+    .check{
+      width:100%;
+      margin-top:9px;
+      padding:13px;
+      border:0;
+      border-radius:12px;
+      background:#e2e7df;
+      color:#829080;
+      font-weight:900;
+    }
+    .check.ready{background:var(--green);color:#fff;box-shadow:0 4px var(--deep)}
+    .toast{
+      position:fixed;
+      z-index:8;
+      top:84px;
+      left:50%;
+      display:none;
+      max-width:calc(100% - 32px);
+      padding:11px 16px;
+      transform:translateX(-50%);
+      border-radius:12px;
+      background:#293830;
+      color:#fff;
+      text-align:center;
+    }
+    .toast.show{display:block}
+    @media(max-width:650px){
+      .app{padding:0 14px 88px}
+      .layout{gap:13px;padding-top:14px}
+      .hero{min-height:150px;padding:19px;border-radius:19px}
+      .hero h1{max-width:260px;font-size:22px}
+      .hero p{max-width:250px;font-size:14px}
+      .hero:after{right:78px;font-size:36px}
+      .mascot{width:58px;height:58px;font-size:31px}
+      .side{gap:9px}
+      .card{padding:12px}
+      .week{gap:2px}
+      .day{width:25px;font-size:9px}
+      .day b{width:26px;height:26px}
+      .path{gap:12px;padding:20px 12px}
+      .lesson{width:62px;height:62px}
+      .nav{gap:3px;justify-content:space-around}
+      .nav button{padding:7px 9px}
+      .nav button span{display:none}
+    }
+    @media(max-width:430px){
+      .wordlist{grid-template-columns:1fr}
+      .pill{padding:7px 9px;font-size:12px}
+      .hero h1{font-size:20px}
+      .profilegrid{gap:6px}
+      .statbox{font-size:12px}
+      .simple{padding:16px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        scroll-behavior:auto!important;
+        animation-duration:.01ms!important;
+        transition-duration:.01ms!important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="brand"><span class="brandmark" aria-hidden="true">ع</span> ARBI GO</div>
+      <div class="stats" aria-label="আপনার পরিসংখ্যান">
+        <div class="pill" title="শেখার ধারাবাহিকতা">🔥 <b id="streak">0</b></div>
+        <div class="pill" title="মোট অভিজ্ঞতা পয়েন্ট">💎 <b id="xp">0</b> XP</div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="main-column">
+        <section class="page active" id="page-lesson">
+          <div class="hero">
+            <div class="hero-copy">
+              <small>বাংলা → আরবি · শুরুর স্তর</small>
+              <h1>চলুন, আজ আরবি শিখি!</h1>
+              <p>প্রতিদিন ৫ মিনিট—ছোট পাঠে বড় অগ্রগতি।</p>
+            </div>
+            <div class="mascot" aria-hidden="true">🦉</div>
+          </div>
+
+          <div class="unit">
+            <div>
+              <h2>ইউনিট ১ · সালাম ও পরিচয়</h2>
+              <p>দৈনন্দিন জীবনের দরকারি শব্দ</p>
+            </div>
+            <div class="unitcount">
+              <span id="progressLabel">০/৩ পাঠ</span>
+              <div class="bar"><i id="progress"></i></div>
+            </div>
+          </div>
+
+          <div class="path" aria-label="পাঠ বেছে নিন">
+            <button class="lesson" data-lesson="0" aria-label="পাঠ ১: সালাম">★<small>শুরু</small></button>
+            <button class="lesson locked" data-lesson="1" aria-label="পাঠ ২: শব্দ">Aa<small>শব্দ</small></button>
+            <button class="lesson locked" data-lesson="2" aria-label="পাঠ ৩: পরিচয়">★<small>পরিচয়</small></button>
+          </div>
+        </section>
+
+        <section class="page" id="page-practice">
+          <div class="simple">
+            <h2>📖 শব্দভান্ডার</h2>
+            <p class="desc">শব্দ খুঁজুন এবং আরবি উচ্চারণ শুনুন।</p>
+            <div class="toolbar">
+              <input class="search" id="search" type="search" placeholder="শব্দ খুঁজুন…" aria-label="শব্দ খুঁজুন">
+              <button class="filter active" data-filter="সব">সব</button>
+              <button class="filter" data-filter="অভিবাদন">অভিবাদন</button>
+              <button class="filter" data-filter="দৈনন্দিন">দৈনন্দিন</button>
+              <button class="filter" data-filter="পরিবার">পরিবার</button>
+              <button class="filter" data-filter="সংখ্যা">সংখ্যা</button>
+              <button class="filter" data-filter="খাবার">খাবার</button>
+            </div>
+            <div class="wordlist" id="wordlist"></div>
+            <button class="primary" style="margin-top:18px" id="review">শব্দ কুইজ শুরু করুন →</button>
+          </div>
+        </section>
+
+        <section class="page" id="page-rank">
+          <div class="simple">
+            <h2>🏆 আপনার অগ্রগতি</h2>
+            <p class="desc">প্রতিদিন অনুশীলন করে নিজের সেরা রেকর্ড গড়ুন।</p>
+            <div class="profilegrid">
+              <div class="statbox">⚡<b id="rankxp">0</b>মোট XP</div>
+              <div class="statbox">🔥<b id="rankstreak">0</b>দিনের স্ট্রিক</div>
+              <div class="statbox">✅<b id="ranklessons">0</b>পাঠ শেষ</div>
+            </div>
+            <h3 style="margin:22px 0 7px">আপনার শেখার লক্ষ্য</h3>
+            <p class="desc">প্রতিদিন অনুশীলন চালিয়ে যান—নিয়মিত শেখাই অগ্রগতির চাবিকাঠি।</p>
+          </div>
+        </section>
+
+        <section class="page" id="page-profile">
+          <div class="simple">
+            <h2>👤 আমার প্রোফাইল</h2>
+            <p class="desc">বাংলাভাষীদের জন্য আরবি শেখার যাত্রা।</p>
+            <div class="wordlist">
+              <div class="word"><span>শেখার ভাষা</span><b>বাংলা → আরবি</b></div>
+              <div class="word"><span>অগ্রগতি</span><b id="profilelessons">০ / ৩</b></div>
+              <div class="word"><span>মোট XP</span><b id="profilexp">0</b></div>
+            </div>
+            <button class="filter" id="reset" style="margin-top:18px;color:#d45555">অগ্রগতি রিসেট</button>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side" aria-label="দৈনিক অগ্রগতি">
+        <div class="card">
+          <h3>🎯 দৈনিক লক্ষ্য</h3>
+          <div class="daily">
+            <div class="dailyicon" aria-hidden="true">⚡</div>
+            <div><b>১০ XP অর্জন করুন</b><p>প্রতিদিন অল্প অনুশীলন</p></div>
+          </div>
+          <div class="goalbar"><i id="goal"></i></div>
+          <p class="streakline"><span>আজকের অগ্রগতি</span><b id="goalLabel">০ / ১০ XP</b></p>
+        </div>
+        <div class="card">
+          <h3>🔥 শেখার ধারাবাহিকতা</h3>
+          <div class="week" aria-label="সপ্তাহের অনুশীলন">
+            <div class="day" data-day="0"><b>·</b>রবি</div>
+            <div class="day" data-day="1"><b>·</b>সোম</div>
+            <div class="day" data-day="2"><b>·</b>মঙ্গল</div>
+            <div class="day" data-day="3"><b>·</b>বুধ</div>
+            <div class="day" data-day="4"><b>·</b>বৃহঃ</div>
+            <div class="day" data-day="5"><b>·</b>শুক্র</div>
+            <div class="day" data-day="6"><b>·</b>শনি</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <nav class="nav" aria-label="প্রধান নেভিগেশন">
+    <button class="active" data-page="lesson"><strong>🗺️</strong><span>শেখা</span></button>
+    <button data-page="practice"><strong>📚</strong><span>শব্দ</span></button>
+    <button data-page="rank"><strong>🏆</strong><span>অগ্রগতি</span></button>
+    <button data-page="profile"><strong>👤</strong><span>প্রোফাইল</span></button>
+  </nav>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <section class="sheet">
+      <div class="sheethead">
+        <div>
+          <small style="color:#49a40a;font-weight:850" id="lessonName">পাঠ ১ · সালাম</small>
+          <h2 id="modalTitle">সঠিক অর্থটি বেছে নিন</h2>
+        </div>
+        <button class="close" id="close" aria-label="কুইজ বন্ধ করুন">×</button>
+      </div>
+      <div class="qbar" aria-hidden="true"><i id="qbar"></i></div>
+      <p class="prompt" id="prompt"></p>
+      <div class="arabic" id="arabic" lang="ar" dir="rtl"></div>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <button class="check" id="check">উত্তর যাচাই</button>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const vocab=[
+      ['مَرْحَبًا','হ্যালো / স্বাগতম','অভিবাদন'],
+      ['السَّلَامُ عَلَيْكُمْ','আপনার প্রতি শান্তি বর্ষিত হোক','অভিবাদন'],
+      ['وَعَلَيْكُمُ السَّلَام','আপনার প্রতিও শান্তি বর্ষিত হোক','অভিবাদন'],
+      ['صَبَاحُ الْخَيْر','শুভ সকাল','অভিবাদন'],
+      ['مَسَاءُ الْخَيْر','শুভ সন্ধ্যা','অভিবাদন'],
+      ['شُكْرًا','ধন্যবাদ','দৈনন্দিন'],
+      ['عَفْوًا','স্বাগতম / সমস্যা নেই','দৈনন্দিন'],
+      ['مَعَ السَّلَامَة','বিদায়','অভিবাদন'],
+      ['نَعَمْ','হ্যাঁ','দৈনন্দিন'],
+      ['لَا','না','দৈনন্দিন'],
+      ['مِنْ فَضْلِكَ','দয়া করে','দৈনন্দিন'],
+      ['كَيْفَ حَالُكَ؟','আপনি কেমন আছেন?','অভিবাদন'],
+      ['أَنَا بِخَيْر','আমি ভালো আছি','অভিবাদন'],
+      ['مَا اسْمُكَ؟','আপনার নাম কী?','অভিবাদন'],
+      ['اِسْمِي','আমার নাম','অভিবাদন'],
+      ['مَاء','পানি','দৈনন্দিন'],
+      ['طَعَام','খাবার','দৈনন্দিন'],
+      ['بَيْت','বাড়ি','দৈনন্দিন'],
+      ['كِتَاب','বই','দৈনন্দিন'],
+      ['صَدِيق','বন্ধু','দৈনন্দিন'],
+      ['يَوْم','দিন','দৈনন্দিন'],
+      ['جَمِيل','সুন্দর','দৈনন্দিন'],
+      ['كَبِير','বড়','দৈনন্দিন'],
+      ['صَغِير','ছোট','দৈনন্দিন'],
+      ['مَدْرَسَة','স্কুল','দৈনন্দিন'],
+      ['مُعَلِّم','শিক্ষক','দৈনন্দিন'],
+      ['طَالِب','শিক্ষার্থী','দৈনন্দিন'],
+      ['أُمّ','মা','পরিবার'],
+      ['أَب','বাবা','পরিবার'],
+      ['أَخ','ভাই','পরিবার'],
+      ['أُخْت','বোন','পরিবার'],
+      ['وَاحِد','এক','সংখ্যা'],
+      ['اِثْنَان','দুই','সংখ্যা'],
+      ['ثَلَاثَة','তিন','সংখ্যা'],
+      ['أَرْبَعَة','চার','সংখ্যা'],
+      ['خَمْسَة','পাঁচ','সংখ্যা'],
+      ['تُفَّاحَة','আপেল','খাবার'],
+      ['خُبْز','রুটি','খাবার'],
+      ['حَلِيب','দুধ','খাবার'],
+      ['قَهْوَة','কফি','খাবার']
+    ];
+
+    const lessonQuestions=[
+      [
+        ['مَرْحَبًا','مَرْحَبًا শব্দটির অর্থ কী?',['ধন্যবাদ','হ্যালো / স্বাগতম','বিদায়'],1],
+        ['السَّلَامُ عَلَيْكُمْ','সালাম জানাতে কোনটি বলবেন?',['السَّلَامُ عَلَيْكُمْ','مَعَ السَّلَامَة','شُكْرًا'],0],
+        ['صَبَاحُ الْخَيْر','শুভ সকাল-এর আরবি কোনটি?',['مَسَاءُ الْخَيْر','صَبَاحُ الْخَيْر','مَرْحَبًا'],1],
+        ['شُكْرًا','شُكْرًا শব্দটির অর্থ কী?',['দয়া করে','ধন্যবাদ','শুভ সন্ধ্যা'],1]
+      ],
+      [
+        ['مَاء','পানির আরবি কোনটি?',['كِتَاب','مَاء','بَيْت'],1],
+        ['بَيْت','بَيْت শব্দটির অর্থ কী?',['বাড়ি','বন্ধু','খাবার'],0],
+        ['كِتَاب','বই-এর আরবি কোনটি?',['مَدْرَسَة','كِتَاب','طَعَام'],1],
+        ['جَمِيل','جَمِيل শব্দটির অর্থ কী?',['ছোট','সুন্দর','বড়'],1]
+      ],
+      [
+        ['مَا اسْمُكَ؟','কারও নাম জানতে কোনটি বলবেন?',['مَا اسْمُكَ؟','كَيْفَ حَالُكَ؟','مَعَ السَّلَامَة'],0],
+        ['أَنَا بِخَيْر','أَنَا بِخَيْر-এর অর্থ কী?',['আমি ভালো আছি','আপনার নাম কী','শুভ সকাল'],0],
+        ['أُمّ','أُمّ শব্দটির অর্থ কী?',['বাবা','মা','বোন'],1],
+        ['أَخ','ভাই-এর আরবি কোনটি?',['أُخْت','أَخ','أُمّ'],1]
+      ]
+    ];
+
+    const $=id=>document.getElementById(id);
+    const STORAGE_KEY='arbigo-v3';
+
+    function dateKey(date=new Date()){
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    }
+    function previousDateKey(){
+      const d=new Date();
+      d.setDate(d.getDate()-1);
+      return dateKey(d);
+    }
+    function readState(){
+      const defaults={xp:0,done:[],streak:0,dailyXp:0,dailyDate:dateKey(),lastActive:null,activeDays:[]};
+      try{
+        const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+        const today=dateKey();
+        const activeDays=Array.isArray(saved.activeDays)?saved.activeDays.filter(x=>typeof x==='string'):[];
+        return {
+          xp:Number.isFinite(saved.xp)&&saved.xp>=0?saved.xp:0,
+          done:Array.isArray(saved.done)?saved.done.filter(x=>Number.isInteger(x)&&x>=0&&x<3):[],
+          streak:Number.isFinite(saved.streak)&&saved.streak>=0?saved.streak:0,
+          dailyXp:saved.dailyDate===today&&Number.isFinite(saved.dailyXp)?saved.dailyXp:0,
+          dailyDate:today,
+          lastActive:typeof saved.lastActive==='string'?saved.lastActive:null,
+          activeDays
+        };
+      }catch{
+        return defaults;
+      }
+    }
+
+    let state=readState();
+    let currentQuestions=[];
+    let questionIndex=0;
+    let selected=-1;
+    let answered=false;
+    let currentLesson=0;
+    let isReview=false;
+    let activeFilter='সব';
+    let returnFocus=null;
+    let toastTimer;
+
+    function save(){
+      try{
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+      }catch{
+        notify('অগ্রগতি সংরক্ষণ করা যায়নি। ব্রাউজারের স্টোরেজ পরীক্ষা করুন।');
+      }
+      render();
+    }
+
+    function render(){
+      const today=dateKey();
+      const daily=state.dailyDate===today?state.dailyXp:0;
+      $('xp').textContent=state.xp;
+      $('streak').textContent=state.streak;
+      $('rankxp').textContent=state.xp;
+      $('profilexp').textContent=state.xp;
+      $('rankstreak').textContent=state.streak;
+      $('ranklessons').textContent=state.done.length;
+      $('profilelessons').textContent=`${state.done.length} / 3`;
+      $('progressLabel').textContent=`${state.done.length}/3 পাঠ`;
+      $('progress').style.width=`${state.done.length/3*100}%`;
+      $('goal').style.width=`${Math.min(daily,10)*10}%`;
+      $('goalLabel').textContent=`${Math.min(daily,10)} / 10 XP`;
+
+      document.querySelectorAll('.lesson').forEach(button=>{
+        const id=Number(button.dataset.lesson);
+        const done=state.done.includes(id);
+        const locked=id>0&&!state.done.includes(id-1);
+        button.classList.toggle('done',done);
+        button.classList.toggle('locked',locked);
+        button.setAttribute('aria-disabled',String(locked));
+        button.innerHTML=`${done?'✓':id===1?'Aa':'★'}<small>${done?'সম্পন্ন':id===0?'শুরু':id===1?'শব্দ':'পরিচয়'}</small>`;
+      });
+
+      const activeSet=new Set(state.activeDays);
+      document.querySelectorAll('.day').forEach(day=>{
+        const offset=(Number(day.dataset.day)-new Date().getDay()+7)%7;
+        const d=new Date();
+        d.setDate(d.getDate()-offset);
+        const active=activeSet.has(dateKey(d));
+        day.classList.toggle('on',active);
+        day.querySelector('b').textContent=active?'✓':'·';
+      });
+    }
+
+    function drawWords(){
+      const query=($('search').value||'').trim().toLowerCase();
+      const filtered=vocab.filter(word=>
+        (activeFilter==='সব'||word[2]===activeFilter)&&
+        (!query||word[0].toLowerCase().includes(query)||word[1].toLowerCase().includes(query))
+      );
+      $('wordlist').innerHTML=filtered.length
+        ?filtered.map((word,index)=>`<div class="word">
+            <div><b lang="ar" dir="rtl">${word[0]}</b><br><span>${word[1]}</span></div>
+            <button type="button" data-speak="${index}" title="উচ্চারণ শুনুন" aria-label="${word[0]} উচ্চারণ শুনুন">🔊</button>
+          </div>`).join('')
+        :'<p>কোনো শব্দ পাওয়া যায়নি।</p>';
+
+      $('wordlist').querySelectorAll('[data-speak]').forEach(button=>{
+        const word=filtered[Number(button.dataset.speak)];
+        button.onclick=()=>speak(word[0]);
+      });
+    }
+
+    function speak(text){
+      if(!('speechSynthesis' in window)){
+        notify('এই ব্রাউজারে অডিও সুবিধা নেই।');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance=new SpeechSynthesisUtterance(text);
+      utterance.lang='ar-SA';
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function startQuiz(lessonId,{review=false}={}){
+      currentLesson=lessonId;
+      isReview=review;
+      currentQuestions=review?lessonQuestions.flat():lessonQuestions[lessonId];
+      questionIndex=0;
+      selected=-1;
+      answered=false;
+      returnFocus=document.activeElement;
+      $('lessonName').textContent=review?'শব্দ কুইজ':`পাঠ ${lessonId+1} · ${['সালাম','দৈনন্দিন শব্দ','পরিচয়'][lessonId]}`;
+      $('modal').classList.add('show');
+      $('modal').setAttribute('aria-hidden','false');
+      loadQuestion();
+      $('close').focus();
+    }
+
+    function loadQuestion(){
+      const question=currentQuestions[questionIndex];
+      selected=-1;
+      answered=false;
+      $('prompt').textContent=question[1];
+      $('arabic').textContent=question[0];
+      $('qbar').style.width=`${questionIndex/currentQuestions.length*100}%`;
+      $('feedback').textContent='';
+      $('feedback').style.color='';
+      $('check').textContent='উত্তর যাচাই';
+      $('check').classList.remove('ready');
+      $('answers').innerHTML=question[2].map((answer,index)=>
+        `<button type="button" class="answer" data-answer="${index}">${answer}</button>`
+      ).join('');
+      $('answers').querySelectorAll('.answer').forEach(button=>{
+        button.onclick=()=>{
+          if(answered)return;
+          selected=Number(button.dataset.answer);
+          $('answers').querySelectorAll('.answer').forEach(item=>item.className='answer');
+          button.classList.add('selected');
+          $('check').classList.add('ready');
+          $('feedback').textContent='';
+        };
+      });
+    }
+
+    function closeQuiz(){
+      $('modal').classList.remove('show');
+      $('modal').setAttribute('aria-hidden','true');
+      if(returnFocus&&typeof returnFocus.focus==='function')returnFocus.focus();
+    }
+
+    function recordLessonCompletion(){
+      if(isReview){
+        closeQuiz();
+        notify('কুইজ সম্পন্ন! আবার অনুশীলন করতে পারেন।');
+        return;
+      }
+      if(state.done.includes(currentLesson)){
+        closeQuiz();
+        notify('পাঠটি আবার অনুশীলন করেছেন—চমৎকার!');
+        return;
+      }
+      const today=dateKey();
+      if(state.lastActive!==today){
+        state.streak=state.lastActive===previousDateKey()?state.streak+1:1;
+        state.lastActive=today;
+      }
+      state.activeDays=[...new Set([...state.activeDays,today])].slice(-30);
+      state.dailyDate=today;
+      state.dailyXp=(state.dailyXp||0)+50;
+      state.xp+=50;
+      state.done.push(currentLesson);
+      save();
+      closeQuiz();
+      notify('পাঠ সম্পন্ন! +৫০ XP অর্জন করেছেন 🎉');
+    }
+
+    function notify(message){
+      const toast=$('toast');
+      toast.textContent=message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer=setTimeout(()=>toast.classList.remove('show'),2600);
+    }
+
+    $('check').onclick=()=>{
+      if(answered){
+        questionIndex++;
+        if(questionIndex<currentQuestions.length){
+          loadQuestion();
+        }else{
+          recordLessonCompletion();
+        }
+        return;
+      }
+      if(selected<0){
+        $('feedback').style.color='var(--red)';
+        $('feedback').textContent='আগে একটি উত্তর নির্বাচন করুন।';
+        return;
+      }
+      const question=currentQuestions[questionIndex];
+      if(selected===question[3]){
+        answered=true;
+        $('answers').querySelectorAll('.answer').forEach((button,index)=>{
+          if(index===question[3])button.classList.add('correct');
+        });
+        $('feedback').style.color='var(--deep)';
+        $('feedback').textContent='সঠিক উত্তর! দারুণ করছেন 🎉';
+        $('check').textContent=questionIndex===currentQuestions.length-1?'কুইজ শেষ করুন':'পরের প্রশ্ন';
+        $('check').classList.add('ready');
+      }else{
+        $('feedback').style.color='var(--red)';
+        $('feedback').textContent='আবার চেষ্টা করুন—ভুল থেকেও শেখা যায়!';
+        $('answers').querySelectorAll('.answer').forEach(button=>{
+          button.classList.remove('selected');
+          if(Number(button.dataset.answer)===selected)button.classList.add('wrong');
+        });
+        selected=-1;
+      }
+    };
+
+    $('close').onclick=closeQuiz;
+    $('modal').onclick=event=>{
+      if(event.target===$('modal'))closeQuiz();
+    };
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&$('modal').classList.contains('show'))closeQuiz();
+    });
+
+    document.querySelectorAll('.lesson').forEach(button=>{
+      button.onclick=()=>{
+        const id=Number(button.dataset.lesson);
+        if(id>0&&!state.done.includes(id-1)){
+          notify('আগের পাঠটি আগে সম্পন্ন করুন!');
+          return;
+        }
+        startQuiz(id);
+      };
+    });
+
+    document.querySelectorAll('.nav button').forEach(button=>{
+      button.onclick=()=>{
+        document.querySelectorAll('.nav button').forEach(item=>item.classList.remove('active'));
+        button.classList.add('active');
+        document.querySelectorAll('.page').forEach(page=>page.classList.remove('active'));
+        $(`page-${button.dataset.page}`).classList.add('active');
+      };
+    });
+
+    $('review').onclick=()=>startQuiz(0,{review:true});
+    $('search').oninput=drawWords;
+
+    document.querySelectorAll('[data-filter]').forEach(button=>{
+      button.onclick=()=>{
+        activeFilter=button.dataset.filter;
+        document.querySelectorAll('[data-filter]').forEach(item=>item.classList.remove('active'));
+        button.classList.add('active');
+        drawWords();
+      };
+    });
+
+    $('reset').onclick=()=>{
+      if(!confirm('সব অগ্রগতি মুছে ফেলবেন?'))return;
+      state={xp:0,done:[],streak:0,dailyXp:0,dailyDate:dateKey(),lastActive:null,activeDays:[]};
+      save();
+      notify('অগ্রগতি রিসেট হয়েছে।');
+    };
+
+    render();
+    drawWords();
+  </script>
+</body>
+</html>
